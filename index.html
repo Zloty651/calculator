@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculator | Zloty651</title>
-  <link rel="stylesheet" href="style.css">
-  <!-- NOWE: Podpięcie pliku manifestu dla aplikacji offline -->
+  <link rel="stylesheet" href="dark.css">
   <link rel="manifest" href="manifest.json">
 </head>
-<body>
+<!-- WYMUSZENIE CIEMNEGO MOTYWU BEZPOŚREDNIO W HTML -->
+<body style="background-color: #070c14 !important; background: radial-gradient(circle at 15% 75%, rgba(255, 40, 180, 0.15), transparent 25%), radial-gradient(circle at 90% 35%, rgba(0, 220, 255, 0.15), transparent 25%), radial-gradient(circle at 70% 100%, rgba(130, 30, 255, 0.12), transparent 25%) !important; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 25px; font-family: 'Inter', Arial, sans-serif; overflow-x: hidden;">
+
   <div class="calculator">
 
     <div class="display">0</div>
@@ -37,13 +38,11 @@
       <button class="btn number zero">0</button>
       <button class="btn decimal">.</button>
       <button class="btn equal">=</button>
-    </div> <!-- POPRAWIONE: Domknięcie sekcji przycisków -->
-  </div> <!-- POPRAWIONE: Domknięcie całego kalkulatora -->
+    </div>
+  </div>
 
-  <!-- Podpięcie głównego skryptu logicznego kalkulatora -->
   <script src="script.js"></script>
 
-  <!-- NOWE: Rejestracja Service Workera, aby kalkulator działał bez Wi-Fi -->
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
