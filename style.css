@@ -11,6 +11,7 @@ body{
   align-items: center;
   padding: 25px;
   font-family: "Inter", Arial, sans-serif;
+  background-color: #080f18; /* DODANE: Ciemne tło, żeby neonowe poświaty były widoczne */
   background:
     radial-gradient(circle at 15% 75%, rgba(255, 40, 180, 0.18),
     transparent 24%),
@@ -68,7 +69,8 @@ body{
   position: absolute;
   inset: 0;
   border-radius: 32px;
-  background: linerar-gradient(135deg, rbga(255, 255, 255, 0.18), transparent 35%, transparent 65%, rgba(0, 240, 255, 0.3));
+  /* POPRAWIONE: Naprawiono literówki linerar -> linear oraz rbga -> rgba */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 35%, transparent 65%, rgba(0, 240, 255, 0.3));
   pointer-events: none;
 }
 
@@ -95,14 +97,15 @@ body{
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-
 }
 
 .btn:hover{
   transform: translateY(-3px);
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.08));
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3), 0 0 18px rgba(, 220, 255, 0.1);
+  /* POPRAWIONE: Wpisano brakujące "0" w rgba(...) */
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3), 0 0 18px rgba(0, 220, 255, 0.1);
 }
+
 .btn:active{
   transform: scale(0.94);
 }
@@ -136,5 +139,3 @@ body{
 .zero{
   grid-column: span 2;
 }
-
-  
