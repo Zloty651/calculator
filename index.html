@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculator | Zloty651</title>
   <link rel="stylesheet" href="style.css">
+  <!-- NOWE: Podpięcie pliku manifestu dla aplikacji offline -->
+  <link rel="manifest" href="manifest.json">
 </head>
 <body>
   <div class="calculator">
@@ -35,10 +37,21 @@
       <button class="btn number zero">0</button>
       <button class="btn decimal">.</button>
       <button class="btn equal">=</button>
-    </div> <!-- Tutaj brakowało domknięcia klasy "buttons" -->
-  </div> <!-- Tutaj brakowało domknięcia klasy "calculator" -->
+    </div> <!-- POPRAWIONE: Domknięcie sekcji przycisków -->
+  </div> <!-- POPRAWIONE: Domknięcie całego kalkulatora -->
 
-  <!-- PONIŻSZA LINIJKA JEST KLUCZOWA: Podpięcie JavaScriptu -->
+  <!-- Podpięcie głównego skryptu logicznego kalkulatora -->
   <script src="script.js"></script>
+
+  <!-- NOWE: Rejestracja Service Workera, aby kalkulator działał bez Wi-Fi -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+          .then(reg => console.log('Tryb offline gotowy!', reg))
+          .catch(err => console.log('Błąd trybu offline', err));
+      });
+    }
+  </script>
 </body>
 </html>
