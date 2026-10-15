@@ -3,36 +3,36 @@ const operator = document.querySelectorAll(".operator");
 const number = document.querySelectorAll(".number");
 const decimal = document.querySelector(".decimal");
 
-let saveValue = "";
+let saveValue = "0"; // Zaczynamy od tekstu "0"
 
 number.forEach((element) => {
   element.addEventListener("click", () => {
-    if(saveValue == "0"){
-      saveValue = "";
+    // Jeśli na ekranie jest samo "0", nadpisujemy je nową cyfrą
+    if (saveValue === "0") {
+      saveValue = element.innerText;
+    } else {
       saveValue += element.innerText;
-      display.innerText = saveValue;
-    } else{
-      saveValue += element.innerText;
-      display.innerText = saveValue;
     }
+    display.innerText = saveValue;
   });
 });
 
-operator.forEach((element)=>{
-  element.addEventListener("click", ()=>{
+operator.forEach((element) => {
+  element.addEventListener("click", () => {
     let checkOpr = display.innerText.slice(-1);
 
-    if("+-%*/".includes(checkOpr)){
-    return;
+    // Zabezpieczenie przed postawieniem dwóch operatorów obok siebie
+    if ("+-%*/".includes(checkOpr)) {
+      return;
     }
     saveValue += element.innerText;
     display.innerText = saveValue;
-
-  })
-})
+  });
+});
 
 // Decimal Button
-decimal.adEventListener("click", () => {
+// POPRAWIONE: Naprawiono literówkę w addEventListener
+decimal.addEventListener("click", () => {
   let abc = display.innerText.split(/[+%*/-]/).pop();
   if (abc.includes(".")) {
     return;
@@ -43,27 +43,32 @@ decimal.adEventListener("click", () => {
 });
 
 // Equal Button
-document.querySelector(".equal").addEventListener
-("click", ()=>{
-  saveValue = eval(display.innerText);
-  display.innerText = saveValue;
-})
+document.querySelector(".equal").addEventListener("click", () => {
+  try {
+    // Eval oblicza wynik z tekstu
+    let result = eval(display.innerText);
+    saveValue = String(result); // Konwertujemy wynik na tekst
+    display.innerText = saveValue;
+  } catch (error) {
+    display.innerText = "Error";
+    saveValue = "0";
+  }
+});
 
 // All Clear Button
-document.getElementById("clear").addEventListener
-("click",()=>{
-  saveValue = 0;
+document.getElementById("clear").addEventListener("click", () => {
+  saveValue = "0"; // POPRAWIONE: Zmiana z liczby 0 na tekst "0"
   display.innerText = saveValue;
-})
+});
 
 // Delete Button
-document.getElementById("del").addEventListener("click", ()=>{
+document.getElementById("del").addEventListener("click", () => {
   saveValue = display.innerText.slice(0, -1);
 
-  if(saveValue == ""){
-    display.innerText = "0"
-  } else{
+  if (saveValue === "") {
+    saveValue = "0"; // Aktualizujemy też zmienną pamięci
+    display.innerText = "0";
+  } else {
     display.innerText = saveValue;
   }
-
-})
+});
