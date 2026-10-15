@@ -1,0 +1,15 @@
+{
+  "name": "Kalkulator Zlotego",
+  "short_name": "Kalkulator",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#080f18",
+  "theme_color": "#18c8e8",
+  "icons": [
+    {
+      "src": "https://flaticon.com",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
